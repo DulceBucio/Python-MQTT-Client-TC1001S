@@ -25,7 +25,18 @@ def descifrar_orden(argv):
     else:
         return[broker,topic]
 
+# Function that connects the client to the IP
+def connect_mqtt(broker):
+    # Function that return the connection state
+    def on_connect(
+            client, userdata, flags, 
+            rc): 
+        if rc == 0:
+            print("Connected to MQTT Broker!")
+        else:
+            print("Failed to connect, return code %d\n", rc)
 
+<<<<<<< HEAD
 # Function to publish a message in a topic
 def publish(client, topic, msg):
     msg_count = 0
@@ -47,3 +58,25 @@ def subscribe(client: mqtt_client, topic):
 
     client.subscribe(topic)
     client.on_message = on_message
+=======
+    client = mqtt_client.Client(client_id) # Assigns Client ID 
+    client.on_connect = on_connect
+    client.connect(broker, port) # Establish the connection with the server
+    return client 
+
+
+# Function that connects to the mqtt client 
+def connect_mqtt(broker) -> mqtt_client:
+    def on_connect(
+            client, userdata, flags, 
+            rc):
+        if rc == 0:
+            print("Connected to MQTT Broker!")
+        else:
+            print("Failed to connect, return code %d\n", rc)
+
+    client = mqtt_client.Client(client_id)
+    client.on_connect = on_connect
+    client.connect(broker, port)
+    return client
+>>>>>>> origin/Oscar
