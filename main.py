@@ -1,3 +1,9 @@
+# Leader: Kirill Makienko Tkachenko
+# Participant: Dulce Nahomi Bucio Rivas
+# Supervisor: Óscar Omar Zepeda Vazquez 
+# 10/05/23
+# Reference code: https://www.emqx.com/en/blog/how-to-use-mqtt-in-python
+
 # Used libraries
 import sys
 from paho.mqtt import client as mqtt_client
