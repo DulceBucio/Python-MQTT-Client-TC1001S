@@ -36,7 +36,11 @@ def connect_mqtt(broker):
         else:
             print("Failed to connect, return code %d\n", rc)
 
-<<<<<<< HEAD
+    client = mqtt_client.Client(client_id) # Assigns Client ID 
+    client.on_connect = on_connect
+    client.connect(broker, port) # Establish the connection with the server
+    return client 
+
 # Function to publish a message in a topic
 def publish(client, topic, msg):
     msg_count = 0
@@ -49,21 +53,6 @@ def publish(client, topic, msg):
         else:
             print(f"Failed to send message to topic {topic}")
         msg_count += 1
-
-
-# Function to suscribe the client and receive messages
-def subscribe(client: mqtt_client, topic):
-    def on_message(client, userdata, msg):
-        print(f"Received `{msg.payload.decode()}` from `{msg.topic}` topic")
-
-    client.subscribe(topic)
-    client.on_message = on_message
-=======
-    client = mqtt_client.Client(client_id) # Assigns Client ID 
-    client.on_connect = on_connect
-    client.connect(broker, port) # Establish the connection with the server
-    return client 
-
 
 # Function that connects to the mqtt client 
 def connect_mqtt(broker) -> mqtt_client:
@@ -79,4 +68,14 @@ def connect_mqtt(broker) -> mqtt_client:
     client.on_connect = on_connect
     client.connect(broker, port)
     return client
->>>>>>> origin/Oscar
+
+
+# Function to suscribe the client and receive messages
+def subscribe(client: mqtt_client, topic):
+    def on_message(client, userdata, msg):
+        print(f"Received `{msg.payload.decode()}` from `{msg.topic}` topic")
+
+    client.subscribe(topic)
+    client.on_message = on_message
+
+
