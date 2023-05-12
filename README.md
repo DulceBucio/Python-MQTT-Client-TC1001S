@@ -54,13 +54,13 @@ The code supports two main operations: sending messages and subscribing to topic
 To send messages, use the following command line syntax:
 
 ```
-python mqtt_client.py send -p <broker> -c <topic> -m <message>
+py mqtt_client.py send -p <broker> -c <topic> -m <message>
 ```
 
 Meanwhile, to recive the messages, use the following command line syntax:
 
 ```
-python Main.py subscribe -c Marco -p 18.208.155.95
+py Main.py subscribe -c Marco -p 18.208.155.95
 ```
 
 ---
