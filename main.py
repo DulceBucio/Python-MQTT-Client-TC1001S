@@ -77,5 +77,26 @@ def subscribe(client: mqtt_client, topic):
 
     client.subscribe(topic)
     client.on_message = on_message
+#////////////////////////////////////////////////////////////////////////////
+
+# Main program
+
+# Verifies the client choice in order to send or receive message
+if sys.argv[1] == "send":
+    broker,topic,message = descifrar_orden(sys.argv)
+    print(broker)
+    while True: # Allows to keep sending messages 
+        client = connect_mqtt(broker) # Establish the connection 
+        publish(client, topic, message) # Publish the message to the topic
+        message = input("Your message: ") # Receives the message to publish 
 
 
+elif sys.argv[1] == "subscribe":
+    broker,topic = descifrar_orden(sys.argv) 
+    client = connect_mqtt(broker) # Establish the connection
+    subscribe(client, topic) # Receive the message
+    client.loop_forever() # Allows the client to keep receiving messages
+
+else:
+    print("Invalid option!\n")
+    print("Closing program... \n")
